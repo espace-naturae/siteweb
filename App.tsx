@@ -95,7 +95,7 @@ const App: React.FC = () => {
   }, 0);
 
   const handleCheckout = () => {
-    const email = "espacenaturae@gmail.com"; 
+    const email = "info@espacenaturae.ca"; 
     const subject = "Nouvelle commande - Espace Naturaē";
     const itemsList = cart.map(item => {
       const itemPrice = typeof item.price === 'number' ? item.price : 0;
@@ -110,7 +110,7 @@ const App: React.FC = () => {
 
   const handleContactSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const email = "espacenaturae@gmail.com";
+    const email = "info@espacenaturae.ca";
     const subject = `Contact: ${contactForm.subject || 'Demande de renseignement'}`;
     const body = `De: ${contactForm.firstName} ${contactForm.lastName}\nEmail: ${contactForm.email}\nTéléphone: ${contactForm.phone}\n\nMessage:\n${contactForm.message}`;
     
@@ -460,8 +460,11 @@ const App: React.FC = () => {
           <div className="grid md:grid-cols-4 gap-12 mb-20">
             <div className="col-span-2">
               <h3 className="text-2xl font-light tracking-widest uppercase text-eucalyptus mb-6">Espace Naturaē</h3>
-              <p className="text-gray-500 max-w-sm leading-relaxed font-light font-sans mb-6">
+              <p className="text-gray-500 max-w-sm leading-relaxed font-light font-sans mb-2">
                 Soins botaniques du Québec. Pureté. Artisanat. Équilibre.
+              </p>
+              <p className="text-xs text-eucalyptus font-bold tracking-widest mb-6">
+                <a href="mailto:info@espacenaturae.ca" className="hover:underline">info@espacenaturae.ca</a>
               </p>
               <div className="flex items-center space-x-4">
                 <a href="https://www.facebook.com/Espacenaturae/" target="_blank" rel="noopener noreferrer" className="text-eucalyptus hover:text-gray-900 transition-colors" aria-label="Facebook">
