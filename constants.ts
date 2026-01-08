@@ -5,13 +5,13 @@ export const PRODUCTS: Product[] = [
     id: '1',
     name: 'Baume de suif pour le visage à la calendula',
     category: 'Visage & Corps',
-    price: 'à partir de 18$',
+    price: 'à partir de 18',
     description: "Notre baume de suif pour le visage est formulé à partir de suif de bœuf biologique nourri à l'herbe, purifié à la main et infusé à la fleur de calendula biologique pour nourrir et protéger la peau. Enrichi d’huile de rose musqué, ce soin offre une hydratation profonde qui imite la structure naturelle de la peau.",
     ingredients: ['Suif de bœuf bio', 'Huile de rose musquée', 'Macérat de calendula bio', 'Huile de jojoba'],
-    image: '<iframe src="https://drive.google.com/file/d/1_Q4Oyf_kzpLbiW9n8_nhsObnEs-1kHFW/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/baume-visage-calendula.jpg',
     options: [
-      { label: '15g', price: 22 },
-      { label: '30g', price: 40 }
+      { label: '15g', price: 18 },
+      { label: '30g', price: 30 }
     ],
     inci: "Tallow, Simmondsia Chinensis (Jojoba) Seed Oil*, Rosa Canina Fruit Oil*, Calendula Officinalis Flower*, Cera Alba (Beeswax)*, Tocopherol.\n* Ingredients issus de l’agriculture biologique"
   },
@@ -19,13 +19,13 @@ export const PRODUCTS: Product[] = [
     id: '2',
     name: 'Baume de suif pour le corps à la rose et lavande',
     category: 'Visage & Corps',
-    price: 'à partir de 22$',
+    price: 'à partir de 22',
     description: "Élaboré à partir de suif de bœuf biologique nourri à l'herbe, purifié artisanalement et infusé de fleurs de rose et de lavande biologiques. Sa texture riche procure une hydratation profonde, tout en respectant l'équilibre naturel de la peau.",
     ingredients: ['Suif de boeuf bio', 'Huile de jojoba bio', 'Huile de ricin bio', 'Fleurs de rose et lavande bio'],
-    image: '<iframe src="https://drive.google.com/file/d/1vBGIUp3kmvvW2NcB5_iH5dCM37CwgW7D/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/baume-corps-rose-lavande.jpg',
     options: [
-      { label: '30g', price: 18 },
-      { label: '60g', price: 32 }
+      { label: '30g', price: 22 },
+      { label: '60g', price: 40 }
     ],
     inci: "Tallow, Simmondsia Chinensis (Jojoba) Seed Oil*, Ricinus Communis (Castor) Seed Oil*, Rosa Damascena Flower*, Lavandula Angustifolia (Lavender) Flower*, Maranta Arundinacea Root Powder, Tocopherol, Parfum (Essential Oil Blend).\n* Ingredients issus de l’agriculture biologique"
   },
@@ -33,25 +33,24 @@ export const PRODUCTS: Product[] = [
     id: '3',
     name: 'Baume à Lèvres',
     category: 'Soin des Lèvres',
-    price: 'à partir de 5$',
-    description: 'Une protection onctueuse pour vos lèvres, déclinée en plusieurs saveurs botaniques. Nos baumes sont conçus à la main avec des beurres végétaux précieux et de la cire d\'abeille locale pour une nutrition intense.',
+    price: 'Bientôt disponible',
+    description: 'Une protection onctueuse pour vos lèvres, déclinée en plusieurs saveurs botaniques. Nos baumes sont conçus à la main avec des beurres végétaux précieux et de la cire d\'abeille locale pour une nutrition intense. Ce produit sera bientôt disponible.',
     ingredients: ['Beurre de mangue', 'Beurre de kokum', 'Huile de ricin bio', 'Cire d\'abeille bio'],
-    image: '<iframe src="https://drive.google.com/file/d/1qrV2qyM-inabHAwwcIIsKUUD9a-IhQbe/preview" width="640" height="480" allow="autoplay"></iframe>',
-    options: [
-      { label: 'Le Naturel', price: 5 },
-      { label: 'Menthe', price: 7 },
-      { label: 'Zeste de café', price: 'Bientôt disponible' }
-    ],
+    image: '/images/baume-levres.jpg',
     inci: "Le Naturel\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil*, Cera Alba (Beeswax)*\n\nMenthe\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil*, Mentha Piperita (Peppermint) Leaf*, Cera Alba (Beeswax)*, Parfum (Essential Oil Blend)\n\nZeste de café\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil, Cera Alba (Beeswax), Vanilla Planifolia Fruit, Coffea Arabica (Coffee) Seed*, Citrus Sinensis Peel Oil Expressed\n\n* Ingredients issus de l’agriculture biologique"
   },
   {
     id: '4',
     name: 'Huile Élixir',
     category: 'Visage & Corps',
-    price: 'Bientôt disponible',
-    description: 'Nos élixirs pour le visage sont des soins concentrés, formulés à partir d’huiles végétales soigneusement sélectionnées et infusées de plantes reconnues pour leurs bienfaits cutanés. Chaque élixir est conçu pour nourrir la peau en profondeur, soutenir la barrière cutanée et rétablir l’équilibre naturel du teint. Ce produit est actuellement en cours de développement et sera disponible prochainement.',
+    price: 'à partir de 28',
+    description: 'Nos élixirs pour le visage sont des soins concentrés, formulés à partir d’huiles végétales soigneusement sélectionnées et infusées de plantes reconnues pour leurs bienfaits cutanés. Chaque élixir est conçu pour nourrir la peau en profondeur, soutenir la barrière cutanée et rétablir l’équilibre naturel du teint. Ce produit est actuellement en cours de développement et plus de détails suivront.',
     ingredients: ['Huile végétales biologiques', 'Plantes biologiques'],
-    image: '<iframe src="https://drive.google.com/file/d/1vUUUSk4pqKSnWT2dcwu8MvBzzmHXg2vL/preview" width="640" height="480" allow="autoplay"></iframe>'
+    image: '/images/huile-elixir.jpg',
+    options: [
+      { label: '15ml', price: 28 },
+      { label: '30ml', price: 49 }
+    ]
   }
 ];
 
@@ -114,7 +113,7 @@ export const GLOSSARY_ITEMS: GlossaryItem[] = [
   {
     name: "Cire d'Abeille",
     inci: "Cera Alba",
-    description: "Forme une barrière protectrice légère pe la peau pour emprisonner l'hydratation tout en laissant respirer les pores. Elle donne également leur texture onctueuse à nos baumes."
+    description: "Forme une barrière protectrice légère sur la peau pour emprisonner l'hydratation tout en laissant respirer les pores. Elle donne également leur texture onctueuse à nos baumes."
   }
 ];
 

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@theme {
+    --color-eucalyptus: #4D5D53;
+    --color-ivory: #FDFBF7;
+    --font-serif: "Cormorant Garamond", serif;
+    --font-sans: "Montserrat", sans-serif;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-ivory);
+    color: #1a1a1a;
+}
+
+h1,
+h2,
+h3,
+.serif {
+    font-family: var(--font-serif);
+}

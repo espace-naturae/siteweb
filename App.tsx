@@ -42,30 +42,30 @@ const App: React.FC = () => {
   }, [view]);
 
   const addToCart = (product: Product, option?: ProductOption, quantityToAdd: number = 1) => {
-    const priceToUse = option ? option.price : product.price;
-    if (priceToUse === 'Bientôt disponible') return;
+    if (product.price === 'Bientôt disponible') return;
 
     setCart(prev => {
-      const existing = prev.find(item => 
-        item.id === product.id && 
+      const existing = prev.find(item =>
+        item.id === product.id &&
         (!option || (item.selectedOption && item.selectedOption.label === option.label))
       );
-      
+
       if (existing) {
-        return prev.map(item => 
+        return prev.map(item =>
           (item.id === product.id && (!option || (item.selectedOption && item.selectedOption.label === option.label)))
-            ? { ...item, quantity: item.quantity + quantityToAdd } 
+            ? { ...item, quantity: item.quantity + quantityToAdd }
             : item
         );
       }
-      
-      const numericPrice = typeof priceToUse === 'string' 
-        ? parseFloat(priceToUse.replace(/[^0-9.]/g, '')) 
+
+      const priceToUse = option ? option.price : product.price;
+      const numericPrice = typeof priceToUse === 'string'
+        ? parseFloat(priceToUse.replace(/[^0-9.]/g, ''))
         : priceToUse;
 
-      return [...prev, { 
-        ...product, 
-        quantity: quantityToAdd, 
+      return [...prev, {
+        ...product,
+        quantity: quantityToAdd,
         selectedOption: option,
         price: isNaN(numericPrice as number) ? 0 : numericPrice
       }];
@@ -84,7 +84,7 @@ const App: React.FC = () => {
   };
 
   const removeFromCart = (cartItemId: string, optionLabel?: string) => {
-    setCart(prev => prev.filter(item => 
+    setCart(prev => prev.filter(item =>
       !(item.id === cartItemId && (!optionLabel || item.selectedOption?.label === optionLabel))
     ));
   };
@@ -95,15 +95,15 @@ const App: React.FC = () => {
   }, 0);
 
   const handleCheckout = () => {
-    const email = "info@espacenaturae.ca"; 
+    const email = "info@espacenaturae.ca";
     const subject = "Nouvelle commande - Espace Naturaē";
     const itemsList = cart.map(item => {
       const itemPrice = typeof item.price === 'number' ? item.price : 0;
       return `- ${item.name}${item.selectedOption ? ` (${item.selectedOption.label})` : ''} x${item.quantity} : ${itemPrice}$ (Total: ${itemPrice * item.quantity}$)`;
     }).join('\n');
-    
+
     const body = `Bonjour Espace Naturaē,\n\nJe souhaite passer la commande suivante :\n\n${itemsList}\n\nTotal : ${cartTotal}$\n\nCoordonnées client :\nNom :\nTéléphone :\nAdresse de livraison :\n\nMerci !`;
-    
+
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoUrl;
   };
@@ -113,13 +113,13 @@ const App: React.FC = () => {
     const email = "info@espacenaturae.ca";
     const subject = `Contact: ${contactForm.subject || 'Demande de renseignement'}`;
     const body = `De: ${contactForm.firstName} ${contactForm.lastName}\nEmail: ${contactForm.email}\nTéléphone: ${contactForm.phone}\n\nMessage:\n${contactForm.message}`;
-    
+
     const mailtoUrl = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     window.location.href = mailtoUrl;
   };
 
   const glossaryLetters = Array.from(new Set(GLOSSARY_ITEMS.map(i => i.name[0].toUpperCase()))).sort();
-  const filteredGlossary = activeLetter 
+  const filteredGlossary = activeLetter
     ? GLOSSARY_ITEMS.filter(item => item.name[0].toUpperCase() === activeLetter)
     : GLOSSARY_ITEMS;
 
@@ -129,7 +129,7 @@ const App: React.FC = () => {
         .replace(/width="[^"]*"/, 'width="100%"')
         .replace(/height="[^"]*"/, 'height="100%"');
       return (
-        <div 
+        <div
           className={`${containerClass} overflow-hidden bg-gray-50 flex items-center justify-center`}
           dangerouslySetInnerHTML={{ __html: responsiveIframe }}
         />
@@ -152,9 +152,9 @@ const App: React.FC = () => {
               </div>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
                 {PRODUCTS.slice(0, 4).map(product => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={product} 
+                  <ProductCard
+                    key={product.id}
+                    product={product}
                     onAddToCart={(p) => addToCart(p, undefined, 1)}
                     onViewDetails={(p) => { setSelectedProduct(p); setView('product'); }}
                   />
@@ -163,9 +163,13 @@ const App: React.FC = () => {
             </section>
 
             <section className="flex justify-center py-12 bg-ivory">
-              <iframe src="https://drive.google.com/file/d/14fXUZCBXD3VpIkGVkH9DgosK7p_QXYa8/preview" width="800" height="600"></iframe>
+              <img
+                src="/images/baume-infographic.jpg"
+                alt="Composition des Baumes Naturaē"
+                className="max-w-4xl w-full h-auto rounded shadow-sm opacity-90 hover:opacity-100 transition-opacity"
+              />
             </section>
-            
+
             <section className="bg-eucalyptus text-white py-24">
               <div className="max-w-5xl mx-auto px-4 text-center">
                 <h2 className="text-4xl md:text-6xl font-light playfair display mb-12 italic leading-relaxed">
@@ -183,9 +187,9 @@ const App: React.FC = () => {
             <h2 className="text-5xl font-light serif text-center mb-20 text-eucalyptus">La Boutique</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-16">
               {PRODUCTS.map(product => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
+                <ProductCard
+                  key={product.id}
+                  product={product}
                   onAddToCart={(p) => addToCart(p, undefined, 1)}
                   onViewDetails={(p) => { setSelectedProduct(p); setView('product'); }}
                 />
@@ -206,14 +210,14 @@ const App: React.FC = () => {
             </div>
 
             <div className="mb-12 flex flex-wrap justify-center gap-4">
-              <button 
+              <button
                 onClick={() => setActiveLetter(null)}
                 className={`px-4 py-2 text-xs tracking-widest uppercase transition-all border ${!activeLetter ? 'bg-eucalyptus text-white border-eucalyptus' : 'text-gray-400 border-gray-100 hover:border-gray-300'}`}
               >
                 Tous
               </button>
               {glossaryLetters.map(letter => (
-                <button 
+                <button
                   key={letter}
                   onClick={() => setActiveLetter(letter)}
                   className={`w-10 h-10 flex items-center justify-center text-xs tracking-widest uppercase transition-all border ${activeLetter === letter ? 'bg-eucalyptus text-white border-eucalyptus' : 'text-gray-400 border-gray-100 hover:border-gray-300'}`}
@@ -224,7 +228,7 @@ const App: React.FC = () => {
             </div>
 
             <div className="grid gap-8">
-              {filteredGlossary.sort((a,b) => a.name.localeCompare(b.name)).map((item, idx) => (
+              {filteredGlossary.sort((a, b) => a.name.localeCompare(b.name)).map((item, idx) => (
                 <div key={idx} className="bg-white p-8 border border-gray-50 shadow-sm hover:shadow-md transition-shadow group">
                   <div className="flex flex-col md:flex-row md:items-baseline md:justify-between mb-4">
                     <h3 className="text-2xl font-light serif text-eucalyptus group-hover:italic transition-all">{item.name}</h3>
@@ -240,8 +244,8 @@ const App: React.FC = () => {
       case 'product':
         if (!selectedProduct) { setView('shop'); return null; }
         const currentPriceLabel = activeOption ? activeOption.price : selectedProduct.price;
-        const isAvailable = currentPriceLabel !== 'Bientôt disponible';
-        
+        const isAvailable = selectedProduct.price !== 'Bientôt disponible';
+
         return (
           <section className="max-w-7xl mx-auto px-4 py-20 min-h-[80vh]">
             <button onClick={() => setView('shop')} className="mb-12 flex items-center text-sm text-gray-500 hover:text-eucalyptus transition-colors uppercase tracking-widest font-sans font-bold">
@@ -254,9 +258,9 @@ const App: React.FC = () => {
                 <span className="text-eucalyptus tracking-widest uppercase text-xs mb-4 font-sans font-bold">{selectedProduct.category}</span>
                 <h2 className="text-5xl font-light serif text-gray-900 mb-6 leading-tight">{selectedProduct.name}</h2>
                 <p className="text-3xl text-eucalyptus font-light font-sans mb-8 tracking-tight">
-                   {currentPriceLabel}{typeof currentPriceLabel === 'number' ? '$' : ''} {isAvailable && <span className="text-xs text-gray-400">CAD</span>}
+                  {currentPriceLabel}{typeof currentPriceLabel === 'number' ? '$' : ''} {isAvailable && <span className="text-xs text-gray-400">CAD</span>}
                 </p>
-                
+
                 {selectedProduct.options && selectedProduct.options.length > 0 && (
                   <div className="mb-8">
                     <h4 className="text-xs tracking-widest uppercase font-semibold text-gray-900 mb-4 font-sans font-bold">Options disponibles</h4>
@@ -265,13 +269,12 @@ const App: React.FC = () => {
                         <button
                           key={opt.label}
                           onClick={() => setActiveOption(opt)}
-                          className={`px-6 py-2 border text-sm font-sans transition-all ${
-                            activeOption?.label === opt.label 
-                              ? 'border-eucalyptus bg-eucalyptus text-white' 
+                          className={`px-6 py-2 border text-sm font-sans transition-all ${activeOption?.label === opt.label
+                              ? 'border-eucalyptus bg-eucalyptus text-white'
                               : 'border-gray-200 text-gray-600 hover:border-eucalyptus'
-                          }`}
+                            }`}
                         >
-                          {opt.label} {typeof opt.price === 'number' ? `- ${opt.price}$` : (opt.price !== selectedProduct.price ? `- ${opt.price}` : '')}
+                          {opt.label} {opt.price !== selectedProduct.price && `- ${opt.price}$`}
                         </button>
                       ))}
                     </div>
@@ -282,14 +285,14 @@ const App: React.FC = () => {
                   <div className="mb-10">
                     <h4 className="text-xs tracking-widest uppercase font-semibold text-gray-900 mb-4 font-sans font-bold">Quantité</h4>
                     <div className="flex items-center border border-gray-200 w-32 rounded overflow-hidden">
-                      <button 
+                      <button
                         onClick={() => setDetailQuantity(q => Math.max(1, q - 1))}
                         className="flex-1 py-2 hover:bg-gray-50 text-gray-500 transition-colors"
                       >
                         -
                       </button>
                       <span className="flex-1 text-center text-sm font-medium">{detailQuantity}</span>
-                      <button 
+                      <button
                         onClick={() => setDetailQuantity(q => q + 1)}
                         className="flex-1 py-2 hover:bg-gray-50 text-gray-500 transition-colors"
                       >
@@ -310,9 +313,9 @@ const App: React.FC = () => {
                     ))}
                   </ul>
                 </div>
-                
+
                 {isAvailable ? (
-                  <button 
+                  <button
                     onClick={() => addToCart(selectedProduct, activeOption || undefined, detailQuantity)}
                     className="w-full bg-eucalyptus text-white py-5 tracking-[0.2em] uppercase text-xs font-sans font-bold hover:bg-gray-800 transition-all shadow-sm mb-4"
                   >
@@ -346,12 +349,12 @@ const App: React.FC = () => {
                 Chez Espace Naturaē, nous croyons que prendre soin de soi commence par des ingrédients aussi simples et bienveillants que ceux destinés à nourrir notre corps.
                 Basée au Québec, c'est dans cet esprit qu'est née Espace Naturaē: un désir de redonner un sens aux soins quotidiens. La marque propose des formulations épurées à base d'ingrédients naturels. Conçus à la main en petites quantités, nos produits offrent fraîcheur, efficacité et une approche respectueuse du corps et de la peau.
               </p>
-              <img 
-                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200" 
-                alt="Nature québécoise sauvage" 
-                className="rounded-lg my-12 shadow-md" 
+              <img
+                src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1200"
+                alt="Nature québécoise sauvage"
+                className="rounded-lg my-12 shadow-md"
               />
-              
+
               {/* CONTACT SECTION */}
               <div className="mt-24 pt-24 border-t border-gray-100 text-left">
                 <div className="text-center mb-16">
@@ -359,69 +362,69 @@ const App: React.FC = () => {
                   <div className="w-16 h-[1px] bg-eucalyptus mx-auto mb-6"></div>
                   <p className="text-gray-500 max-w-lg mx-auto font-light font-sans text-base">Vous avez des questions sur nos soins ? Nous serions ravis de vous aider.</p>
                 </div>
-                
+
                 <form onSubmit={handleContactSubmit} className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-6 font-sans">
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Prénom</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       value={contactForm.firstName}
-                      onChange={(e) => setContactForm({...contactForm, firstName: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, firstName: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors"
                     />
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Nom</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       value={contactForm.lastName}
-                      onChange={(e) => setContactForm({...contactForm, lastName: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, lastName: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors"
                     />
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Email</label>
-                    <input 
+                    <input
                       required
-                      type="email" 
+                      type="email"
                       value={contactForm.email}
-                      onChange={(e) => setContactForm({...contactForm, email: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, email: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors"
                     />
                   </div>
                   <div>
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Téléphone</label>
-                    <input 
-                      type="tel" 
+                    <input
+                      type="tel"
                       value={contactForm.phone}
-                      onChange={(e) => setContactForm({...contactForm, phone: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, phone: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors"
                     />
                   </div>
                   <div className="md:col-span-2">
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Sujet</label>
-                    <input 
+                    <input
                       required
-                      type="text" 
+                      type="text"
                       value={contactForm.subject}
-                      onChange={(e) => setContactForm({...contactForm, subject: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, subject: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors"
                     />
                   </div>
                   <div className="md:col-span-2">
                     <label className="block text-[10px] uppercase tracking-[0.2em] font-bold text-gray-400 mb-2">Message</label>
-                    <textarea 
+                    <textarea
                       required
                       rows={5}
                       value={contactForm.message}
-                      onChange={(e) => setContactForm({...contactForm, message: e.target.value})}
+                      onChange={(e) => setContactForm({ ...contactForm, message: e.target.value })}
                       className="w-full bg-white border border-gray-100 p-4 text-sm focus:outline-none focus:border-eucalyptus transition-colors resize-none"
                     ></textarea>
                   </div>
                   <div className="md:col-span-2 mt-4">
-                    <button 
+                    <button
                       type="submit"
                       className="w-full bg-eucalyptus text-white py-5 tracking-[0.3em] uppercase text-xs font-bold hover:bg-gray-800 transition-all shadow-md"
                     >
@@ -444,9 +447,9 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
-      <Navbar 
-        currentView={view} 
-        setView={setView} 
+      <Navbar
+        currentView={view}
+        setView={setView}
         cartCount={cart.reduce((a, b) => a + b.quantity, 0)}
         onOpenCart={() => setIsCartOpen(true)}
       />
@@ -468,10 +471,10 @@ const App: React.FC = () => {
               </p>
               <div className="flex items-center space-x-4">
                 <a href="https://www.facebook.com/Espacenaturae/" target="_blank" rel="noopener noreferrer" className="text-eucalyptus hover:text-gray-900 transition-colors" aria-label="Facebook">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v2.385z" /></svg>
                 </a>
                 <a href="https://www.instagram.com/espacenaturae/" target="_blank" rel="noopener noreferrer" className="text-eucalyptus hover:text-gray-900 transition-colors" aria-label="Instagram">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.365-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.365-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.28-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z"/></svg>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.332 3.608 1.308.975.975 1.245 2.242 1.308 3.607.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.063 1.365-.333 2.633-1.308 3.608-.975.975-2.242 1.245-3.607 1.308-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.365-.063-2.633-.333-3.608-1.308-.975-.975-1.245-2.242-1.308-3.607-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.332-2.633 1.308-3.608.975-.975 2.242-1.245 3.607-1.308 1.266-.058 1.646-.07 4.85-.07zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.058-1.281.072-1.689.072-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.28-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.44-.645 1.44-1.44s-.645-1.44-1.44-1.44z" /></svg>
                 </a>
               </div>
             </div>
@@ -523,14 +526,14 @@ const App: React.FC = () => {
                           )}
                           <div className="flex items-center space-x-3 mb-3">
                             <div className="flex items-center border border-gray-100 rounded bg-gray-50">
-                              <button 
+                              <button
                                 onClick={() => updateCartQuantity(item.id, item.selectedOption?.label, -1)}
                                 className="px-2 py-0.5 text-gray-400 hover:text-eucalyptus"
                               >
                                 -
                               </button>
                               <span className="text-xs px-1 min-w-[1.5rem] text-center">{item.quantity}</span>
-                              <button 
+                              <button
                                 onClick={() => updateCartQuantity(item.id, item.selectedOption?.label, 1)}
                                 className="px-2 py-0.5 text-gray-400 hover:text-eucalyptus"
                               >
@@ -539,8 +542,8 @@ const App: React.FC = () => {
                             </div>
                             <p className="text-sm text-gray-500">{item.price}$</p>
                           </div>
-                          <button 
-                            onClick={() => removeFromCart(item.id, item.selectedOption?.label)} 
+                          <button
+                            onClick={() => removeFromCart(item.id, item.selectedOption?.label)}
                             className="text-[10px] text-red-400 hover:text-red-600 uppercase font-bold tracking-widest transition-colors"
                           >
                             Supprimer
@@ -558,14 +561,14 @@ const App: React.FC = () => {
                     <p className="font-light serif">Sous-total</p>
                     <p className="font-bold">{cartTotal}$ <span className="text-xs text-gray-400">CAD</span></p>
                   </div>
-                  <button 
+                  <button
                     onClick={handleCheckout}
                     className="w-full bg-eucalyptus text-white py-5 tracking-[0.2em] uppercase text-xs font-bold hover:bg-gray-800 shadow-xl transition-all"
                   >
                     Commander par Email
                   </button>
                   <p className="text-[10px] text-center text-gray-400 mt-6 uppercase tracking-widest leading-relaxed">
-                    Les commandes sont finalisées par e-mail.<br/>Paiement par virement Interac ou PayPal.
+                    Les commandes sont finalisées par e-mail.<br />Paiement par virement Interac ou PayPal.
                   </p>
                 </div>
               )}
