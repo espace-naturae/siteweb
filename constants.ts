@@ -19,13 +19,13 @@ export const PRODUCTS: Product[] = [
     id: '2',
     name: 'Baume de suif pour le corps à la rose et lavande',
     category: 'Visage & Corps',
-    price: 'à partir de 22$',
+    price: 'à partir de 18$',
     description: "Élaboré à partir de suif de bœuf biologique nourri à l'herbe, purifié artisanalement et infusé de fleurs de rose et de lavande biologiques. Sa texture riche procure une hydratation profonde, tout en respectant l'équilibre naturel de la peau.",
     ingredients: ['Suif de boeuf bio', 'Huile de jojoba bio', 'Huile de ricin bio', 'Fleurs de rose et lavande bio'],
     image: '/images/baume-corps-rose-lavande.jpg',
     options: [
-      { label: '30g', price: 22 },
-      { label: '60g', price: 40 }
+      { label: '30g', price: 18 },
+      { label: '60g', price: 32 }
     ],
     inci: "Tallow, Simmondsia Chinensis (Jojoba) Seed Oil*, Ricinus Communis (Castor) Seed Oil*, Rosa Damascena Flower*, Lavandula Angustifolia (Lavender) Flower*, Maranta Arundinacea Root Powder, Tocopherol, Parfum (Essential Oil Blend).\n* Ingredients issus de l’agriculture biologique"
   },
