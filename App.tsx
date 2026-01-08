@@ -202,7 +202,7 @@ const App: React.FC = () => {
         return (
           <section className="max-w-5xl mx-auto px-4 py-20 min-h-screen">
             <div className="text-center mb-16">
-              <h2 className="text-5xl font-light serif text-eucalyptus mb-4">Glossaire Botanique</h2>
+              <h2 className="text-5xl font-light serif text-eucalyptus mb-4">Glossaire des ingrédients</h2>
               <div className="w-16 h-[1px] bg-eucalyptus mx-auto mb-8"></div>
               <p className="text-gray-500 max-w-2xl mx-auto font-light leading-relaxed">
                 Découvrez les bienfaits des trésors botaniques que nous sélectionnons avec soin pour vos rituels.
@@ -270,8 +270,8 @@ const App: React.FC = () => {
                           key={opt.label}
                           onClick={() => setActiveOption(opt)}
                           className={`px-6 py-2 border text-sm font-sans transition-all ${activeOption?.label === opt.label
-                              ? 'border-eucalyptus bg-eucalyptus text-white'
-                              : 'border-gray-200 text-gray-600 hover:border-eucalyptus'
+                            ? 'border-eucalyptus bg-eucalyptus text-white'
+                            : 'border-gray-200 text-gray-600 hover:border-eucalyptus'
                             }`}
                         >
                           {opt.label} {opt.price !== selectedProduct.price && `- ${opt.price}$`}
@@ -482,7 +482,7 @@ const App: React.FC = () => {
               <h4 className="text-xs tracking-widest uppercase font-semibold text-gray-900 mb-6 font-sans font-bold opacity-70">Navigation</h4>
               <ul className="space-y-4 text-sm text-gray-500">
                 <li><button onClick={() => setView('shop')} className="hover:text-eucalyptus transition-colors font-sans font-bold">Boutique</button></li>
-                <li><button onClick={() => setView('glossary')} className="hover:text-eucalyptus transition-colors font-sans font-bold">Glossaire Botanique</button></li>
+                <li><button onClick={() => setView('glossary')} className="hover:text-eucalyptus transition-colors font-sans font-bold">Glossaire des ingrédients</button></li>
                 <li><button onClick={() => setView('about')} className="hover:text-eucalyptus transition-colors font-sans font-bold">L'Histoire</button></li>
               </ul>
             </div>
