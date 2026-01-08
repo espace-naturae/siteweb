@@ -8,7 +8,7 @@ export const PRODUCTS: Product[] = [
     price: 'à partir de 18',
     description: "Notre baume de suif pour le visage est formulé à partir de suif de bœuf biologique nourri à l'herbe, purifié à la main et infusé à la fleur de calendula biologique pour nourrir et protéger la peau. Enrichi d’huile de rose musqué, ce soin offre une hydratation profonde qui imite la structure naturelle de la peau.",
     ingredients: ['Suif de bœuf bio', 'Huile de rose musquée', 'Macérat de calendula bio', 'Huile de jojoba'],
-    image: '<iframe src="https://drive.google.com/file/d/1_Q4Oyf_kzpLbiW9n8_nhsObnEs-1kHFW/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/baume-visage-calendula.jpg',
     options: [
       { label: '15g', price: 18 },
       { label: '30g', price: 30 }
@@ -22,7 +22,7 @@ export const PRODUCTS: Product[] = [
     price: 'à partir de 22',
     description: "Élaboré à partir de suif de bœuf biologique nourri à l'herbe, purifié artisanalement et infusé de fleurs de rose et de lavande biologiques. Sa texture riche procure une hydratation profonde, tout en respectant l'équilibre naturel de la peau.",
     ingredients: ['Suif de boeuf bio', 'Huile de jojoba bio', 'Huile de ricin bio', 'Fleurs de rose et lavande bio'],
-    image: '<iframe src="https://drive.google.com/file/d/1vBGIUp3kmvvW2NcB5_iH5dCM37CwgW7D/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/baume-corps-rose-lavande.jpg',
     options: [
       { label: '30g', price: 22 },
       { label: '60g', price: 40 }
@@ -36,7 +36,7 @@ export const PRODUCTS: Product[] = [
     price: 'Bientôt disponible',
     description: 'Une protection onctueuse pour vos lèvres, déclinée en plusieurs saveurs botaniques. Nos baumes sont conçus à la main avec des beurres végétaux précieux et de la cire d\'abeille locale pour une nutrition intense. Ce produit sera bientôt disponible.',
     ingredients: ['Beurre de mangue', 'Beurre de kokum', 'Huile de ricin bio', 'Cire d\'abeille bio'],
-    image: '<iframe src="https://drive.google.com/file/d/1qrV2qyM-inabHAwwcIIsKUUD9a-IhQbe/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/baume-levres.jpg',
     inci: "Le Naturel\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil*, Cera Alba (Beeswax)*\n\nMenthe\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil*, Mentha Piperita (Peppermint) Leaf*, Cera Alba (Beeswax)*, Parfum (Essential Oil Blend)\n\nZeste de café\nINCI: Mangifera Indica (Mango) Seed Butter, Garcinia Indica (Kokum) Seed Butter, Ricinus Communis (Castor) Seed Oil, Cera Alba (Beeswax), Vanilla Planifolia Fruit, Coffea Arabica (Coffee) Seed*, Citrus Sinensis Peel Oil Expressed\n\n* Ingredients issus de l’agriculture biologique"
   },
   {
@@ -46,7 +46,7 @@ export const PRODUCTS: Product[] = [
     price: 'à partir de 28',
     description: 'Nos élixirs pour le visage sont des soins concentrés, formulés à partir d’huiles végétales soigneusement sélectionnées et infusées de plantes reconnues pour leurs bienfaits cutanés. Chaque élixir est conçu pour nourrir la peau en profondeur, soutenir la barrière cutanée et rétablir l’équilibre naturel du teint. Ce produit est actuellement en cours de développement et plus de détails suivront.',
     ingredients: ['Huile végétales biologiques', 'Plantes biologiques'],
-    image: '<iframe src="https://drive.google.com/file/d/1vUUUSk4pqKSnWT2dcwu8MvBzzmHXg2vL/preview" width="640" height="480" allow="autoplay"></iframe>',
+    image: '/images/huile-elixir.jpg',
     options: [
       { label: '15ml', price: 28 },
       { label: '30ml', price: 49 }
